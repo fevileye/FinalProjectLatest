@@ -1,0 +1,12 @@
+.toolbar{
+    padding:10px;
+    margin:10px;
+}
+
+.material-icons{
+    padding:10px;
+}
+
+.material-icons.md-36 { font-size: 40px; }
+.material-icons.blue { color:royalblue }
+

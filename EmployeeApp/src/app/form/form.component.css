@@ -1,0 +1,53 @@
+
+.toolbarFooter{
+    border: thin solid blue;
+    padding:5px;
+    margin :20px;
+    text-align: right;
+}
+
+.input{
+    height:500px;
+    overflow: auto;   
+}
+
+.leftInput{
+    float:left;
+    
+}
+
+.rightInput{
+    float:left;
+}
+
+ul li{
+    list-style-type: none;
+    padding:10px;
+    margin: 10px;
+}   
+
+.error{
+    color:red;
+}
+
+md-input-container{
+    margin:0px;
+    padding:0px;
+    height:30px;
+}
+
+.upload{
+    float:left;
+    width:150px;
+    height:150px;
+}
+.upload input{
+    display: none;
+}
+
+.upload img{
+    width:150px;
+    height:150px;
+    cursor: pointer;
+    border-radius: 100px;
+}

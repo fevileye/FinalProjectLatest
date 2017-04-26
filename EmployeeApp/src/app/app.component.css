@@ -1,0 +1,63 @@
+#loggedIn_Picture{
+    width: 40px;
+    height:40px;
+}
+
+.toolBar_button{
+    text-align: right;
+}
+
+.toolBar_button img{
+    width:40px;
+    height:40px;
+    padding:10px;
+}
+
+.loggedIn_Details{
+    width:90%;
+    
+}
+
+.loggedIn_Details ul{
+    padding:10px;
+}
+
+.loggedIn_Details li{
+    list-style-type: none;
+    margin: 0;
+    padding:0;
+    font-family: Calibri;
+}
+
+.app-toolbar-menu {
+  padding: 0 14px 0 14px;
+  color: white;
+}
+
+.app-icon-button {
+  box-shadow: none;
+  user-select: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  filter: none;
+  font-weight: normal;
+  height: auto;
+  line-height: inherit;
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+  text-align: left;
+  text-decoration: none;
+}
+
+.employeeList{
+    overflow: hidden;
+    float:left;
+    width:30%;
+}
+
+.employeeInformation{
+    float:left;
+    width:70%;
+}

@@ -1,0 +1,20 @@
+.result{
+  background-color:white;
+  top:60%;
+  left:40%;
+  height:100px;
+  width:200px;
+  padding:10px;
+  position:fixed;
+  border:thin solid cornflowerblue;
+  text-align: center;
+  font-family: Calibri;
+  z-index: 5;
+}
+
+.closeButton{
+  margin:0;
+  text-align: right;
+  color:cadetblue;
+}
+

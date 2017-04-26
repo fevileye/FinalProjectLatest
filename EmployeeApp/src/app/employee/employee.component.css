@@ -1,0 +1,32 @@
+.employeeData{
+   margin:5px;
+   padding:4px;
+}
+
+.employeeData:hover{
+    background-color: lightsteelblue;
+}
+
+.employeeData:active{
+    background-color: cornflowerblue;
+}
+
+:host.highlight .employeeData{
+   background-color: cornflowerblue;
+}
+
+:host.highlight .detail{
+    color: white;
+}
+.profilePicture{
+    width:70px;
+    height:70px;
+    float:left;
+    overflow: hidden;
+    padding:5px;
+    border-radius: 30px;
+    
+}
+
+
+

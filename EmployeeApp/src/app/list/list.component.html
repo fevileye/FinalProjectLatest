@@ -1,0 +1,17 @@
+<section class="leftBody">
+  <section class="toolbar">
+    <i class="material-icons blue">search</i>
+    <md-input-container  >
+      <input mdInput placeholder="Search" color ="primary" (keyup)="onChange($event)">
+    </md-input-container>
+    <i *ngIf="buttonStatus" class="material-icons blue" (click)="onDeleteClicked()">delete</i>
+    <i class="material-icons blue" (click)="sortingOperation()">sort</i>
+    <i class="material-icons blue">filter_list</i>
+    <emp-popup *ngIf="deleteStatus" [deleteData]=deleteDataFinal (confirmationNo)="onConfrimationNo()" (confirmationYes)="onConfrimationYes()"></emp-popup>
+  </section>
+  <section class="content">
+    <emp-employee *ngFor="let employee of employees" [ngClass]="{'highlight':employee.empid==selectedId}" [employee]="employee" (deleteButton)="onClicked($event)" (colorStatus)="onColorClicked($event)"></emp-employee>
+    <i class="material-icons blue buttonAdd md-48" (click)="onAddClicked()">add_circle</i>
+  </section>
+<section>
+    
