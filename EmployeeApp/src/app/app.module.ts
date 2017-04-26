@@ -18,6 +18,8 @@ import { Routing } from './app.routing';
 import { employeesListServices } from './employeeslist.services';
 import { sharedServices} from './shared.services';
 import { PopupComponent } from './popup/popup.component';
+import {lookupListToken,lookupLists} from'./providers'; 
+import {locationListServices} from'./locationlist.services';
 
 
 @NgModule({
@@ -48,7 +50,9 @@ import { PopupComponent } from './popup/popup.component';
   providers: [
     employeesListServices,
     sharedServices,
-    DatePipe
+    DatePipe,
+      {provide:lookupListToken,useValue:lookupLists},
+    locationListServices
    // { provide: XHRBackend, useClass: MockXHRBackend }
   ],
   bootstrap: [AppComponent]

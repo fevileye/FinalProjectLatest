@@ -25,15 +25,18 @@ export class employeesListServices{
         });
     }
 
-    add(employee){
+    add(employee,employeeId){
      let headers = new Headers({ 'Content-Type': 'application/json' });
      let options = new RequestOptions({ headers: headers });
      console.log(JSON.stringify(employee));
 
-    //return this.http.post('http://localhost:8080/employee',JSON.stringify(employee),options).subscribe();
-        return Observable.create(observer=>{
-            console.log("berhasil");
+     return Observable.create(observer=>{
             let formData:FormData=new FormData(), xhr:XMLHttpRequest= new XMLHttpRequest();
+
+            if (employeeId)
+            {
+                formData.append("empid",employeeId);
+            }
 
             formData.append("firstName",employee.firstName);
             formData.append("lastName",employee.lastName);
@@ -69,7 +72,6 @@ export class employeesListServices{
             };*/
 
             xhr.open('POST', 'http://localhost:8080/employee', true);
-            console.log("Sent");
             xhr.send(formData);
             
         });
@@ -79,4 +81,5 @@ export class employeesListServices{
     return this.http.delete('http://localhost:8080/employee/'+empId)
     .map(response=>{});
     }
+
 }

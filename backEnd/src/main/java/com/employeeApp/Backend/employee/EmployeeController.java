@@ -1,4 +1,4 @@
-package com.employeeApp.Backend;
+package com.employeeApp.Backend.employee;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,26 +39,26 @@ public class EmployeeController {
 		return EmpRepo.deleteByEmpid(id);
 	}
 	
-	/*@CrossOrigin(origins="http://localhost:4200")
-	@PostMapping("/employee")
-	public Employee addNewEmployee(@RequestBody Employee employee){
-		Employee newEmployee=employee;
-		EmpRepo.save(newEmployee);
-		return newEmployee;
-	}
-	*/
 	
 	@CrossOrigin(origins="http://localhost:4200")
 	@PostMapping("/employee")
-	public Employee addNewEmployee(@RequestParam String firstName,@RequestParam String lastName,@RequestParam String nationality, 
+	public Employee addNewEmployee(@RequestParam(required=false) String empid,@RequestParam String firstName,@RequestParam String lastName,@RequestParam String nationality, 
 			@RequestParam String martialStatus,@RequestParam String phone,@RequestParam String subDivision,@RequestParam String suspendDate,
 			@RequestParam String gender,@RequestParam String dateOfBirth, @RequestParam String hiredDate,@RequestParam String grade,
 			@RequestParam String division,@RequestParam String email,@RequestParam String location,@RequestParam String status) throws ParseException{
 		
 		Date dob=dateFormat.parse(dateOfBirth);
 		Date hod=dateFormat.parse(hiredDate);
+		Employee newEmployee;
 		
-		Employee newEmployee= new Employee(firstName,lastName,gender,dob,martialStatus,phone,division,status,suspendDate,hod,grade,subDivision,email,location,nationality);
+		if (empid!=null)
+		{
+		 newEmployee= new Employee(Long.parseLong(empid),firstName,lastName,gender,dob,martialStatus,phone,division,status,suspendDate,hod,grade,subDivision,email,location,nationality);
+		}else
+		{
+		 newEmployee= new Employee(firstName,lastName,gender,dob,martialStatus,phone,subDivision,status,suspendDate,hod,grade,division,email,location,nationality);	
+		}
+		
 		
 		return EmpRepo.save(newEmployee);
 	}

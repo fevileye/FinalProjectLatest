@@ -1,9 +1,12 @@
-import {Component, OnInit } from '@angular/core';
+import {Component, OnInit ,Inject} from '@angular/core';
 import {ActivatedRoute,Router} from '@angular/router';
 import {employeesListServices} from 'app/employeeslist.services';
+import {locationListServices} from 'app/locationlist.services';
 import {Validators,FormBuilder} from '@angular/forms';
 import {sharedServices} from 'app/shared.services';
 import {DatePipe} from '@angular/common';
+import {lookupListToken} from 'app/providers';
+
 
 @Component({
   selector: 'emp-form',
@@ -16,30 +19,30 @@ export class FormComponent implements OnInit {
   employee=null;
   imageSource;
   form;
-  coba;
   file;
+  locationList;
+  employeeId;
 
-  genders=[
-    {value:'Male',viewValue:'Male'},
-    {value:'Female',viewValue:'Female'},
-  ]
   constructor(
     private formBuilder:FormBuilder,
     private EmployeesListServices: employeesListServices,
+    private LocationListServices:locationListServices,
   private activatedRoute:ActivatedRoute,
   private router:Router,
   private SharedServices:sharedServices,
-  private datePipe:DatePipe
+  private datePipe:DatePipe,
+  @Inject(lookupListToken) public lookupLists
  ) {}
 
   ngOnInit() {
     this.onEmpty();
     this.imageSource="src/Sources/profilePicture.png";
+    this.LocationListServices.getLocation().subscribe(location=>this.locationList=location);
     this.activatedRoute.params
     .subscribe(params=>{
-      let employeeId=params['id'];
-      if(employeeId){
-        this.EmployeesListServices.getById(employeeId)
+      this.employeeId=params['id'];
+      if(this.employeeId){
+        this.EmployeesListServices.getById(this.employeeId)
         .subscribe(employee=>{
           this.employee=employee;
           this.formStatus=1;
@@ -135,8 +138,7 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit(employee){
-    this.EmployeesListServices.add(employee).subscribe(response=>{
-      console.log(response);
+    this.EmployeesListServices.add(employee,this.employeeId).subscribe(response=>{
       this.router.navigate(['']);
       this.SharedServices.notifyOtherComponent({option:'submitClicked',value:'OK'});
     });

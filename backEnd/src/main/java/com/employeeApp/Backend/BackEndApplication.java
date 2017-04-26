@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -15,6 +11,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
+
+import com.employeeApp.Backend.employee.EmployeeRepository;
+import com.employeeApp.Backend.location.LocationRepository;
+import com.employeeApp.Backend.employee.Employee;
+import com.employeeApp.Backend.location.Location;
+
+
 
 @SpringBootApplication
 public class BackEndApplication {
@@ -26,9 +29,13 @@ public class BackEndApplication {
 	@Autowired
 	private EmployeeRepository repository;
 	
+	@Autowired
+	private LocationRepository locRepository;
+	
 	@Bean
 	public CommandLineRunner printAll(ApplicationContext ctx){
 		List<Employee> tempEmployeeList=new ArrayList<Employee>();
+		List<Location> tempLocationList=new ArrayList<Location>();
 		return args->{
 			tempEmployeeList.add(new Employee("Nixon","Cahyadi","Male",new Date(),"Single","085252363636","Java BootCamp","Contract","-",new Date(),"SE-PG","CDC- AsterX","nixon.christian@gmail.com","Bandung","Indonesian"));
 			tempEmployeeList.add(new Employee("Budi","Steven","Male",new Date(),"Single","085252363636","Java BootCamp","Contract","-",new Date(),"SE-PG","CDC- AsterX","nixon.christian@gmail.com","Jakarta","Indonesian"));
@@ -43,6 +50,11 @@ public class BackEndApplication {
 			tempEmployeeList.add(new Employee("Stephen","Purnama","Male",new Date(),"Single","085252363636","Java BootCamp","Contract","-",new Date(),"SE-PG","CDC- AsterX","nixon.christian@gmail.com","Lampung","Indonesian"));
 			tempEmployeeList.add(new Employee("Ardi","Christian","Male",new Date(),"Single","085252363636","Java BootCamp","Contract","-",new Date(),"SE-PG","CDC- AsterX","nixon.christian@gmail.com","Jakarta","Indonesian"));
 			repository.save(tempEmployeeList);
+			tempLocationList.add(new Location(1,"Jakarta"));
+			tempLocationList.add(new Location(2,"Bandung"));
+			tempLocationList.add(new Location(3,"Bali"));
+			tempLocationList.add(new Location(4,"Yogyakarta"));
+			locRepository.save(tempLocationList);
 		};
 	}
 }

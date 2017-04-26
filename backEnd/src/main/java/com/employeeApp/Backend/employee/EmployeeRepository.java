@@ -1,4 +1,4 @@
-package com.employeeApp.Backend;
+package com.employeeApp.Backend.employee;
 
 import java.util.List;
 

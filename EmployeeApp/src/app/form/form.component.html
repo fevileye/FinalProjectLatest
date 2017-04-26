@@ -30,7 +30,7 @@
 
     <li>
      <md-select placeholder="Gender" name="gender" formControlName="gender">
-     <md-option *ngFor="let gender of genders" [value]="gender.value" >
+     <md-option *ngFor="let gender of lookupLists.genders" [value]="gender.value" >
       {{gender.viewValue}}
       </md-option>
       </md-select>
@@ -70,10 +70,13 @@
       </div>
     </li>
 
-    <li>
-       <md-input-container>
-         <input  mdInput placeholder="Location" formControlName="location">
-      </md-input-container>
+
+      <li>
+     <md-select placeholder="Location" name="Location" formControlName="location">
+     <md-option *ngFor="let location of locationList" [value]="location.locName">
+      {{location.locName}}
+      </md-option>
+      </md-select>
     </li>
   </ul>
   </section>
@@ -106,16 +109,16 @@
 
     <li>
      <md-select placeholder="Grade" name="grade" formControlName="grade">
-     <md-option *ngFor="let gender of genders" [value]="gender.value">
-      {{gender.viewValue}}
+     <md-option *ngFor="let grade of lookupLists.grades" [value]="grade.value">
+      {{grade.viewValue}}
       </md-option>
       </md-select>
    </li>
 
     <li>
      <md-select placeholder="Division" name="division" formControlName="division">
-     <md-option *ngFor="let gender of genders" [value]="gender.value">
-      {{gender.viewValue}}
+     <md-option *ngFor="let division of lookupLists.divisions" [value]="division.value">
+      {{division.viewValue}}
       </md-option>
       </md-select>
     </li>

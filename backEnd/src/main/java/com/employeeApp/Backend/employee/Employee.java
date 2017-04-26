@@ -1,4 +1,4 @@
-package com.employeeApp.Backend;
+package com.employeeApp.Backend.employee;
 
 import java.util.Date;
 
@@ -51,6 +51,25 @@ public class Employee {
 	public Employee(){}
 	
 	public Employee (String firstName, String lastName, String gender, Date dateOfBirth,String martial_status, String phone, String subDivision,String status, String suspendDate, Date hiredDate, String grade, String division,String email,String location,String nationality){
+		this.firstName=firstName;
+		this.lastName=lastName;
+		this.gender=gender;
+		this.dateOfBirth=dateOfBirth;
+		this.martialStatus=martial_status;
+		this.phone=phone;
+		this.subDivision=subDivision;
+		this.status=status;
+		this.suspendDate=suspendDate;
+		this.hiredDate=hiredDate;
+		this.grade=grade;
+		this.division=division;
+		this.email=email;
+		this.location=location;
+		this.nationality=nationality;
+	}
+	
+	public Employee (long empid,String firstName, String lastName, String gender, Date dateOfBirth,String martial_status, String phone, String subDivision,String status, String suspendDate, Date hiredDate, String grade, String division,String email,String location,String nationality){
+		this.empid=empid;
 		this.firstName=firstName;
 		this.lastName=lastName;
 		this.gender=gender;
@@ -167,3 +186,4 @@ public class Employee {
 
 	
 }
+

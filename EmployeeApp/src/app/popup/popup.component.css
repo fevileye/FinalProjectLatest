@@ -12,6 +12,21 @@
   z-index: 5;
 }
 
+.filterForm{
+  background-color:white;
+  top:60%;
+  left:40%;
+  height:150px;
+  width:300px;
+  padding:10px;
+  position:fixed;
+  border:thin solid cornflowerblue;
+  text-align: center;
+  font-family: Calibri;
+  z-index: 5;
+}
+
+
 .closeButton{
   margin:0;
   text-align: right;

@@ -22,7 +22,7 @@ export class ListComponent implements OnInit {
   originalData;
   employees;
   buttonStatus=null;
-  deleteStatus=null;
+  popupStatus=null;
   tempDeleteData;
   selectedId;
   sortingStatus="normal";
@@ -94,16 +94,20 @@ export class ListComponent implements OnInit {
     this.router.navigate(['add']);
   }
 
+  filterClicked(){
+    this.popupStatus=2;
+  }
+
   onDeleteClicked(){
-    this.deleteStatus=1;
+    this.popupStatus=1;
   }
 
   onConfrimationNo(){
-    this.deleteStatus=null;
+    this.popupStatus=null;
   }
 
   onConfrimationYes(){
-    this.deleteStatus=null;
+    this.popupStatus=null;
     this.EmployeesListServices.delete(this.tempDeleteData.empid)
       .subscribe(()=>{
         this.EmployeesListServices.getHttp().subscribe(employees=>{

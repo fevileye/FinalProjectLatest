@@ -1,6 +1,35 @@
-<div class="result">
+<div class="result" *ngIf="popupInput===1">
   <div class="closeButton" (click)="onClose()">x</div>
   <p>Are you sure ?</p>
   <button md-button color="primary" (click)="onYesClicked()">Yes</button>
   <button md-button color="warn" (click)="onClose()">No</button>
+</div>
+
+<div class="filterForm" *ngIf="popupInput===2">
+  <div class="closeButton" (click)="onClose()">x</div>
+  <p>Filter</p>
+  <form 
+  [formGroup]="form"
+  (ngSubmit)="onSubmit(form.value)">
+  <section class="input">
+
+     <md-select placeholder="Gender" name="gender" formControlName="gender">
+     <md-option *ngFor="let gender of lookupLists.genders" [value]="gender.value" >
+      {{gender.viewValue}}
+      </md-option>
+      </md-select>
+      
+     <md-select placeholder="Location" name="location" formControlName="location">
+     <md-option *ngFor="let location of locations" [value]="location.locName" >
+      {{location.locName}}
+      </md-option>
+      </md-select>
+
+  </section>
+	  
+	  <section class="toolbarFooter">
+	  <button md-button color="primary" type="submit" [disabled]="!form.valid">Save</button>
+	  <button md-button color="warn" (click)="onCancelClicked()"> Cancel</button>
+	  </section>
+  </form>
 </div>
