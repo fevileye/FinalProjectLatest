@@ -40,7 +40,6 @@ export class ListComponent implements OnInit {
           this.EmployeesListServices.getHttp().subscribe(employees=>{
           this.employees=employees;
           this.originalData=employees});
-
           this.selectedId=null;
           this.buttonStatus=null;
         }

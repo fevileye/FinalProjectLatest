@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
 })
 export class PopupComponent implements OnInit {
 
-  @Input() deleteData;
+  @Input() popupInput;
   @Output() confirmationNo = new EventEmitter();
   @Output() confirmationYes= new EventEmitter();
 
