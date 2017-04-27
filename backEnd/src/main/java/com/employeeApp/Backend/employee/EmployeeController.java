@@ -7,6 +7,7 @@ import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.UUID;
 
 import javax.mail.Multipart;
 
@@ -59,29 +60,42 @@ public class EmployeeController {
 		Employee newEmployee;
 		String UploadRoot="./../EmployeeApp/src/Sources";
 		String fileName=null;
+		String extention=null;
 		
-		try{
+		if (photo!=null){
+			if (photo.getOriginalFilename().contains(".jpg"))
+			{
+				extention=".jpg";
+			}
+			else if (photo.getOriginalFilename().contains(".png")){
+				extention=".png";
+			}
+		}
+		
+		if (empid!=null)
+		{
+			Employee tempEmployee=EmpRepo.findByEmpid(Long.parseLong(empid));
+			if (photo!=null)
+			{
+				if (tempEmployee.getImage().equals("profilePicture.png")==false){
+					new File(UploadRoot+"/"+tempEmployee.getImage()).getAbsoluteFile().delete();
+				}
+				
+				fileName=UUID.randomUUID().toString().concat(extention);
+				Files.copy(photo.getInputStream(), Paths.get(UploadRoot,fileName));
+			}
+			else{
+				fileName=tempEmployee.getImage();
+			}
+			newEmployee= new Employee(Long.parseLong(empid),firstName,lastName,gender,dob,martialStatus,phone,subDivision,status,suspendDate,hod,grade,division,email,location,nationality,fileName);
+		}else {
 			if (photo!=null){
-				fileName=photo.getOriginalFilename();
+				fileName=UUID.randomUUID().toString().concat(extention);
 				Files.copy(photo.getInputStream(), Paths.get(UploadRoot,fileName));
 			}else if(empid==null && photo==null){
 				fileName="profilePicture.png";
 			}
 			
-			
-			
-		}catch(IOException e){
-			e.printStackTrace();
-		}
-			
-			
-		if (empid!=null)
-		{
-		 Employee tempEmployee=EmpRepo.findByEmpid(Long.parseLong(empid));
-		 new File(UploadRoot+"/"+tempEmployee.getImage()).getAbsoluteFile().delete();
-		 newEmployee= new Employee(Long.parseLong(empid),firstName,lastName,gender,dob,martialStatus,phone,subDivision,status,suspendDate,hod,grade,division,email,location,nationality,fileName);
-		}else
-		{
 		 newEmployee= new Employee(firstName,lastName,gender,dob,martialStatus,phone,subDivision,status,suspendDate,hod,grade,division,email,location,nationality,fileName);	
 		}
 		
