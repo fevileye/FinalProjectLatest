@@ -53,7 +53,7 @@ public class EmployeeController {
 		
 		if (empid!=null)
 		{
-		 newEmployee= new Employee(Long.parseLong(empid),firstName,lastName,gender,dob,martialStatus,phone,division,status,suspendDate,hod,grade,subDivision,email,location,nationality);
+		 newEmployee= new Employee(Long.parseLong(empid),firstName,lastName,gender,dob,martialStatus,phone,subDivision,status,suspendDate,hod,grade,division,email,location,nationality);
 		}else
 		{
 		 newEmployee= new Employee(firstName,lastName,gender,dob,martialStatus,phone,subDivision,status,suspendDate,hod,grade,division,email,location,nationality);	

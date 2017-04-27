@@ -28,8 +28,10 @@
     z-index: 6;
 }
 
-.numEmployee{
-    font-family: Calibri;
-    float:right;
+md-basic-chip{
+   font-family: Calibri;
+    background-color:lightgrey;
+    border:thin solid white;
+    border-radius: 20px;
 }
 

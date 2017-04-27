@@ -7,12 +7,11 @@
     <i *ngIf="buttonStatus" class="material-icons blue" (click)="onDeleteClicked()">delete</i>
     <i class="material-icons blue" (click)="sortingOperation()">sort</i>
     <i class="material-icons blue" (click)="filterClicked()">filter_list</i>
-    <md-chip-list class="numEmployee">
-      <md-chip color="primary">
+      <md-basic-chip>
      {{employees==null ? 0:employees.length}}
-      </md-chip>
-    </md-chip-list>
-    <emp-popup *ngIf="popupStatus" [popupInput]=popupStatus (confirmationNo)="onConfrimationNo()" (confirmationYes)="onConfrimationYes()"></emp-popup>
+      </md-basic-chip>
+    
+    <emp-popup *ngIf="popupStatus" [popupInput]=popupStatus (confirmationNo)="onConfrimationNo()" (confirmationYes)="onConfrimationYes()" (confirmationSubmit)="onConfirmationSubmit($event)"></emp-popup>
   </section>
   <section class="content">
     <emp-employee *ngFor="let employee of employees" [ngClass]="{'highlight':employee.empid==selectedId}" [employee]="employee" (deleteButton)="onClicked($event)" (colorStatus)="onColorClicked($event)"></emp-employee>

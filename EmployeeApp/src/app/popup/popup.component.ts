@@ -15,6 +15,7 @@ export class PopupComponent implements OnInit {
   @Input() popupInput;
   @Output() confirmationNo = new EventEmitter();
   @Output() confirmationYes= new EventEmitter();
+  @Output() confirmationSubmit=new EventEmitter();
 
   constructor(private EmployeesListServices:employeesListServices,
   private router:Router,
@@ -29,17 +30,17 @@ export class PopupComponent implements OnInit {
   ngOnInit() {
     this.form = this.formBuilder.group({
       gender: this.formBuilder.control('', Validators.compose([
-        Validators.required,
-        Validators.pattern('[\\w\\-\\s\\/]+')
+        Validators.required
       ])),
-      location: this.formBuilder.control('', Validators.compose([
-        Validators.required,
-        Validators.pattern('[\\w\\-\\s\\/]+')
-      ])),
+      location: this.formBuilder.control(''),
     });
 
     this.LocationListServices.getLocation().subscribe(locations=>this.locations=locations);
 
+  }
+
+  onSubmit(filterAnswer){
+    this.confirmationSubmit.emit(filterAnswer);
   }
 
   onYesClicked(){

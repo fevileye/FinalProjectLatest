@@ -17,5 +17,8 @@ export const lookupLists = {
         { value: 'CDC- AsterX', viewValue: 'CDC- AsterX' },
         { value: 'CDC- Sun', viewValue: 'CDC- Sun' },
         { value: 'SWD', viewValue: 'SWD' },
-    ]
+    ],
+    gendersFilter: [{ value: 'Male', viewValue: 'Male' },
+    { value: 'Female', viewValue: 'Female' },
+    { value: 'All', viewValue: 'All' }],
 };

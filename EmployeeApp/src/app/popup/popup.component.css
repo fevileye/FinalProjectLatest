@@ -2,7 +2,7 @@
   background-color:white;
   top:60%;
   left:40%;
-  height:100px;
+  height:140px;
   width:200px;
   padding:10px;
   position:fixed;
@@ -16,7 +16,7 @@
   background-color:white;
   top:60%;
   left:40%;
-  height:150px;
+  height:200px;
   width:300px;
   padding:10px;
   position:fixed;
@@ -26,10 +26,18 @@
   z-index: 5;
 }
 
-
 .closeButton{
   margin:0;
+  padding:5px;
   text-align: right;
   color:cadetblue;
+}
+p{
+  font-family: Calibri;
+  padding:10px;
+}
+
+.input{
+  margin:5px;
 }
 

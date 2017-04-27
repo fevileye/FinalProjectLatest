@@ -102,6 +102,21 @@ export class ListComponent implements OnInit {
     this.popupStatus=1;
   }
 
+  onConfirmationSubmit(filterAnswer){
+    console.log(filterAnswer);
+    this.popupStatus=null;
+    if(filterAnswer.gender==='All')
+    {
+        this.employees=this.originalData;
+    }else  if(filterAnswer.location!=""){
+        this.employees=this.originalData.filter(employee=>employee.gender.toLowerCase().includes(filterAnswer.gender.toLowerCase()));
+        this.employees=this.employees.filter(employee=>employee.location.toLowerCase().includes(filterAnswer.location.toLowerCase()));
+    }
+    else{
+      this.employees=this.originalData.filter(employee=>employee.gender.toLowerCase().includes(filterAnswer.gender.toLowerCase()));
+    }
+  }
+
   onConfrimationNo(){
     this.popupStatus=null;
   }
