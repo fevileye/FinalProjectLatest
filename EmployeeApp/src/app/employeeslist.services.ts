@@ -25,11 +25,9 @@ export class employeesListServices{
         });
     }
 
-    add(employee,employeeId){
+    add(employee,employeeId,image){
      let headers = new Headers({ 'Content-Type': 'application/json' });
      let options = new RequestOptions({ headers: headers });
-     console.log(JSON.stringify(employee));
-
      return Observable.create(observer=>{
             let formData:FormData=new FormData(), xhr:XMLHttpRequest= new XMLHttpRequest();
 
@@ -37,6 +35,16 @@ export class employeesListServices{
             {
                 formData.append("empid",employeeId);
             }
+
+            if(image!=null)
+            {
+                formData.append("photo",image[0]);
+            }
+            else
+            {
+                
+                formData.append("photo",null);
+            } 
 
             formData.append("firstName",employee.firstName);
             formData.append("lastName",employee.lastName);
@@ -65,7 +73,7 @@ export class employeesListServices{
                }
              };
 
-          /*   xhr.upload.onprogress = (event) => {
+             /*xhr.upload.onprogress = (event) => {
                 this.progress = Math.round(event.loaded / event.total * 100);
 
                 this.progressObserver.next(this.progress);

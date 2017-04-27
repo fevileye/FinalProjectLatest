@@ -19,7 +19,7 @@ export class FormComponent implements OnInit {
   employee=null;
   imageSource;
   form;
-  file;
+  file=null;
   locationList;
   employeeId;
 
@@ -135,10 +135,11 @@ export class FormComponent implements OnInit {
     this.form.controls['email'].setValue(this.employee.email);
     this.form.controls['location'].setValue(this.employee.location);
     this.form.controls['status'].setValue(this.employee.status);
+    this.imageSource="src/Sources/"+this.employee.image;
   }
 
   onSubmit(employee){
-    this.EmployeesListServices.add(employee,this.employeeId).subscribe(response=>{
+    this.EmployeesListServices.add(employee,this.employeeId,this.file).subscribe(response=>{
       this.router.navigate(['']);
       this.SharedServices.notifyOtherComponent({option:'submitClicked',value:'OK'});
     });
@@ -154,7 +155,6 @@ export class FormComponent implements OnInit {
   fileEvent(source){
 
     this.file = source.srcElement.files;
-
     var reader = new FileReader();
 
     reader.onload = (event: any) => {

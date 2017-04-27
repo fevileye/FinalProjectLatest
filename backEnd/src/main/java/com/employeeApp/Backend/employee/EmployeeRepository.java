@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface EmployeeRepository extends PagingAndSortingRepository<Employee, Long>{
 
 	public Employee findByEmpid(@Param("empid") long id);
+	public Employee findByimage(@Param("image") String image);
 	@Transactional
 	public Long deleteByEmpid(long id); 
 }

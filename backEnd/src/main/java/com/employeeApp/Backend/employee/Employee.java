@@ -47,10 +47,12 @@ public class Employee {
 	private String location;
 	@Column (name="nationality",nullable=false)
 	private String nationality;
+	@Column (name="image",nullable=false)
+	private String image;
 	
 	public Employee(){}
 	
-	public Employee (String firstName, String lastName, String gender, Date dateOfBirth,String martial_status, String phone, String subDivision,String status, String suspendDate, Date hiredDate, String grade, String division,String email,String location,String nationality){
+	public Employee (String firstName, String lastName, String gender, Date dateOfBirth,String martial_status, String phone, String subDivision,String status, String suspendDate, Date hiredDate, String grade, String division,String email,String location,String nationality,String image){
 		this.firstName=firstName;
 		this.lastName=lastName;
 		this.gender=gender;
@@ -66,9 +68,10 @@ public class Employee {
 		this.email=email;
 		this.location=location;
 		this.nationality=nationality;
+		this.image=image;
 	}
 	
-	public Employee (long empid,String firstName, String lastName, String gender, Date dateOfBirth,String martial_status, String phone, String subDivision,String status, String suspendDate, Date hiredDate, String grade, String division,String email,String location,String nationality){
+	public Employee (long empid,String firstName, String lastName, String gender, Date dateOfBirth,String martial_status, String phone, String subDivision,String status, String suspendDate, Date hiredDate, String grade, String division,String email,String location,String nationality,String image){
 		this.empid=empid;
 		this.firstName=firstName;
 		this.lastName=lastName;
@@ -85,6 +88,7 @@ public class Employee {
 		this.email=email;
 		this.location=location;
 		this.nationality=nationality;
+		this.image=image;
 	}
 	
 	public long getEmpid() {
@@ -182,6 +186,12 @@ public class Employee {
 	}
 	public void setNationality(String nationality) {
 		this.nationality = nationality;
+	}
+	public String getImage() {
+		return image;
+	}
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	
