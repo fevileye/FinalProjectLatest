@@ -1,16 +1,15 @@
-<section class="leftBody">
+<section class="leftBody" >
   <section class="toolbar">
-    <i class="material-icons blue">search</i>
-    <md-input-container  >
-      <input mdInput placeholder="Search" color ="primary" (keyup)="onChange($event)">
-    </md-input-container>
-    <i *ngIf="buttonStatus" class="material-icons blue" (click)="onDeleteClicked()">delete</i>
-    <i class="material-icons blue" (click)="sortingOperation()">sort</i>
-    <i class="material-icons blue" (click)="filterClicked()">filter_list</i>
-      <md-basic-chip>
-     {{employees==null ? 0:employees.length}}
-      </md-basic-chip>
-    
+      <md-chip-list>
+        <i class="material-icons blue">search</i>
+        <md-input-container  >
+          <input mdInput placeholder="Search" color ="primary" (keyup)="onChange($event)">
+        </md-input-container>
+       <i *ngIf="buttonStatus" class="material-icons blue" (click)="onDeleteClicked()">delete</i>
+       <i class="material-icons blue" (click)="sortingOperation()">sort</i>
+       <i class="material-icons blue" [ngClass]="{'filterHighlight':highlightFilter!=null}" (click)="filterClicked()">filter_list</i>
+       <md-chip>  {{employees==null ? 0:employees.length}} </md-chip>
+    </md-chip-list>
     <emp-popup *ngIf="popupStatus" [popupInput]=popupStatus (confirmationNo)="onConfrimationNo()" (confirmationYes)="onConfrimationYes()" (confirmationSubmit)="onConfirmationSubmit($event)"></emp-popup>
   </section>
   <section class="content">

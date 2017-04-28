@@ -66,7 +66,7 @@
          <input  mdInput placeholder="Phone" formControlName="phone">
       </md-input-container>
       <div *ngIf="form.controls.phone.errors?.pattern" class="error">
-        Nationality has invalid characters
+        Phone Number must be numeric
       </div>
     </li>
 
@@ -147,8 +147,12 @@
   </section>
 
   <section class="toolbarFooter">
-  <button md-button color="primary" type="submit" [disabled]="!form.valid">Save</button>
-  <button md-button color="warn" (click)="onCancelClicked()"> Cancel</button>
+    <div class="cancelButton">
+     <button md-raised-button color="warn" (click)="onCancelClicked()"> Cancel</button>
+   </div>
+    <div class="submitButton">
+     <button md-raised-button color="primary" type="submit" [disabled]="!form.valid">Save</button>
+   </div>
   </section>
   </form>
 </section>

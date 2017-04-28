@@ -1,6 +1,7 @@
 .employeeData{
-   margin:5px;
-   padding:4px;
+   margin:10px;
+   padding:10px;
+   overflow: hidden;
 }
 
 .employeeData:hover{
@@ -18,14 +19,32 @@
 :host.highlight .detail{
     color: white;
 }
+:host.highlight .date{
+    color:white;
+}
+
 .profilePicture{
     width:70px;
     height:70px;
     float:left;
     overflow: hidden;
-    padding:5px;
+    padding:0px;
     border-radius: 30px;
     
+}
+
+.detail{
+     font-size: 14.5px;
+     float:left;
+     margin-left: 10px;
+     margin-bottom: 5px;
+     margin-top: 10px;
+}
+
+.date{
+    float:right;
+    margin:10px;
+    font-size:13px;
 }
 
 

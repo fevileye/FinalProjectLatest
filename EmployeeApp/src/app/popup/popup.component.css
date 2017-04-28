@@ -1,7 +1,8 @@
 .result{
   background-color:white;
-  top:60%;
+  top:45%;
   left:40%;
+  margin:auto;
   height:140px;
   width:200px;
   padding:10px;
@@ -14,10 +15,10 @@
 
 .filterForm{
   background-color:white;
-  top:60%;
+  top:45%;
   left:40%;
   height:200px;
-  width:300px;
+  width:350px;
   padding:10px;
   position:fixed;
   border:thin solid cornflowerblue;
@@ -32,12 +33,19 @@
   text-align: right;
   color:cadetblue;
 }
-p{
+.title{
+  font-size: 20px;
   font-family: Calibri;
+  text-align: center;
   padding:10px;
 }
 
 .input{
-  margin:5px;
+  margin:10px;
+  padding:10px;
+}
+
+md-select{
+  padding:5px;
 }
 

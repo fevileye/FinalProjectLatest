@@ -6,6 +6,7 @@ import {Validators,FormBuilder} from '@angular/forms';
 import {sharedServices} from 'app/shared.services';
 import {DatePipe} from '@angular/common';
 import {lookupListToken} from 'app/providers';
+import {MdSnackBar} from'@angular/material'
 
 
 @Component({
@@ -31,7 +32,8 @@ export class FormComponent implements OnInit {
   private router:Router,
   private SharedServices:sharedServices,
   private datePipe:DatePipe,
-  @Inject(lookupListToken) public lookupLists
+  @Inject(lookupListToken) public lookupLists,
+  private snackbar:MdSnackBar
  ) {}
 
   ngOnInit() {
@@ -44,6 +46,7 @@ export class FormComponent implements OnInit {
       if(this.employeeId){
         this.EmployeesListServices.getById(this.employeeId)
         .subscribe(employee=>{
+          this.SharedServices.notifyOtherComponent({option:'loadSelectedId',value:this.employeeId});
           this.employee=employee;
           this.formStatus=1;
           this.onFillValue();
@@ -73,7 +76,7 @@ export class FormComponent implements OnInit {
       ])),
       phone: this.formBuilder.control('', Validators.compose([
         Validators.required,
-        Validators.pattern('[\\w\\-\\s\\/]+')
+        Validators.pattern('^[0-9]+'),
       ])),
       subDivision: this.formBuilder.control('', Validators.compose([
         Validators.required,
@@ -99,7 +102,8 @@ export class FormComponent implements OnInit {
         Validators.required
       ])),
       email: this.formBuilder.control('', Validators.compose([
-        Validators.required
+        Validators.required,
+        Validators.email
       ])),
        location: this.formBuilder.control('', Validators.compose([
         Validators.required,
@@ -139,7 +143,11 @@ export class FormComponent implements OnInit {
   }
 
   onSubmit(employee){
+
     this.EmployeesListServices.add(employee,this.employeeId,this.file).subscribe(response=>{
+      this.snackbar.open("Successfully Add/Update","Cancel",{
+        duration:2000,
+      });
       this.router.navigate(['']);
       this.SharedServices.notifyOtherComponent({option:'submitClicked',value:'OK'});
     });
@@ -154,7 +162,7 @@ export class FormComponent implements OnInit {
 
   fileEvent(source){
 
-    this.file = source.srcElement.files;
+    this.file = source.target.files;
     var reader = new FileReader();
 
     reader.onload = (event: any) => {

@@ -1,13 +1,12 @@
 
 .toolbarFooter{
-    border: thin solid blue;
-    padding:5px;
-    margin :20px;
+    border-top: 2px solid darkgray;
+    padding-top: 2px;
     text-align: right;
 }
 
 .input{
-    height:500px;
+    height:505px;
     overflow: auto;   
 }
 
@@ -23,10 +22,11 @@
 ul li{
     list-style-type: none;
     padding:10px;
-    margin: 10px;
+    margin-top: 10px;
 }   
 
 .error{
+    margin:10px;
     color:red;
 }
 
@@ -50,4 +50,14 @@ md-input-container{
     height:150px;
     cursor: pointer;
     border-radius: 100px;
+}
+
+.submitButton{
+    float:right;
+   margin-right:10px;
+}
+
+.cancelButton{
+    float:right;
+    margin-right:5px;
 }

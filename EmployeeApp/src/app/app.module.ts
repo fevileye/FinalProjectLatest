@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule,XHRBackend } from '@angular/http';
-import { MdButtonModule,MdToolbarModule,MdInputModule, MdSelectModule,MdCardModule,MdTabsModule, MdDialogModule,MdChipsModule } from '@angular/material';
+import { MdButtonModule,MdToolbarModule,MdInputModule, MdSelectModule,MdCardModule,MdTabsModule, MdDialogModule,MdChipsModule,MdSnackBarModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
 import {DatePipe} from '@angular/common';
@@ -45,7 +45,8 @@ import {locationListServices} from'./locationlist.services';
     ReactiveFormsModule,
     Routing,
     MdSelectModule,
-    MdChipsModule
+    MdChipsModule,
+    MdSnackBarModule
   ],
   providers: [
     employeesListServices,
@@ -53,7 +54,6 @@ import {locationListServices} from'./locationlist.services';
     DatePipe,
       {provide:lookupListToken,useValue:lookupLists},
     locationListServices
-   // { provide: XHRBackend, useClass: MockXHRBackend }
   ],
   bootstrap: [AppComponent]
 })

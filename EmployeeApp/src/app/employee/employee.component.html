@@ -1,10 +1,15 @@
 <section>
     <md-card class="employeeData"  (click)="showDeleteButton()" (click)="showInformation()" (click)="showColor()">
         <img src="src/Sources/{{employee.image}}" class="profilePicture">
-        <p class="detail">
-            {{employee.firstName}} {{employee.lastName}} <br>
-            {{employee.grade}} <br>
-            {{employee.phone}}
-        <p>
+        <div class="detail">
+
+                {{employee.firstName}} {{employee.lastName}} <br>
+                {{employee.grade}},{{employee.division}} <br>
+                {{employee.location}},{{employee.phone}}
+            
+        </div>
+        <div class = "date">
+            {{employee.hiredDate | date:shortDate}}
+        </div>
     </md-card>
 </section>

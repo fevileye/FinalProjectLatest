@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {employeesListServices} from 'app/employeeslist.services';
-import {MdDialog} from '@angular/material';
+import {MdDialog,MdSnackBar} from '@angular/material';
 import {PopupComponent} from 'app/popup/popup.component';
 import {Router} from '@angular/router';
 import {Http} from '@angular/http';
 import {sharedServices} from 'app/shared.services';
-
+ 
 @Component({
   selector: 'emp-list',
   templateUrl: './list.component.html',
@@ -17,7 +17,8 @@ export class ListComponent implements OnInit {
   private router:Router,
   public dialog:MdDialog,
   private http:Http,
-  private SharedServices:sharedServices) { }
+  private SharedServices:sharedServices,
+  private snackbar:MdSnackBar) { }
 
   originalData;
   employees;
@@ -25,6 +26,7 @@ export class ListComponent implements OnInit {
   popupStatus=null;
   tempDeleteData;
   selectedId;
+  highlightFilter=null;
   sortingStatus="normal";
 
   ngOnInit() {
@@ -42,7 +44,8 @@ export class ListComponent implements OnInit {
           this.originalData=employees});
           this.selectedId=null;
           this.buttonStatus=null;
-        }
+        }else if(response.hasOwnProperty('option') && response.option=='loadSelectedId'){
+          this.selectedId=response.value}
       });
   }
 
@@ -50,27 +53,33 @@ export class ListComponent implements OnInit {
 
     if (this.sortingStatus==="normal"){
           this.employees.sort(function(name1,name2){
-          if (name1.firstName<name2.firstName){
+          if (name1.lastName<name2.lastName){
             return -1;
-          } else if (name1.firstName > name2.firstName){
+          } else if (name1.lastName > name2.lastName){
             return 1;
           } else {
             return 0;
           }       
       });
-      this.sortingStatus="Ascending"
+      this.sortingStatus="Ascending";
+      this.snackbar.open("Sorted in Ascending","Close",{
+        duration:2000,
+      });
     }
     else if (this.sortingStatus==="Ascending"){
           this.employees.sort(function(name1,name2){
-          if (name1.firstName>name2.firstName){
+          if (name1.lastName>name2.lastName){
             return -1;
-          } else if (name1.firstName < name2.firstName){
+          } else if (name1.lastName < name2.lastName){
             return 1;
           } else {
             return 0;
           }       
       });
-      this.sortingStatus="normal"
+      this.sortingStatus="normal";
+      this.snackbar.open("Sorted in Descending","Close",{
+        duration:2000,
+      });
     }
   }
 
@@ -103,18 +112,32 @@ export class ListComponent implements OnInit {
   }
 
   onConfirmationSubmit(filterAnswer){
-    console.log(filterAnswer);
     this.popupStatus=null;
     if(filterAnswer.gender==='All')
     {
+        this.highlightFilter=null;
         this.employees=this.originalData;
+        
     }else  if(filterAnswer.location!=""){
         this.employees=this.originalData.filter(employee=>employee.gender.toLowerCase().includes(filterAnswer.gender.toLowerCase()));
         this.employees=this.employees.filter(employee=>employee.location.toLowerCase().includes(filterAnswer.location.toLowerCase()));
-    }
+        this.snackbar.open("Filter based on "+filterAnswer.gender+" and location "+filterAnswer.location,"Cancel",{
+          duration:2000,
+        });
+         this.highlightFilter=1;
+  }
     else{
       this.employees=this.originalData.filter(employee=>employee.gender.toLowerCase().includes(filterAnswer.gender.toLowerCase()));
+       this.highlightFilter=1;
     }
+
+    if (filterAnswer.location==""){
+      this.snackbar.open("Filter based on "+filterAnswer.gender,"Cancel",{
+          duration:2000,
+        });
+        
+    }
+    
   }
 
   onConfrimationNo(){
@@ -125,6 +148,9 @@ export class ListComponent implements OnInit {
     this.popupStatus=null;
     this.EmployeesListServices.delete(this.tempDeleteData.empid)
       .subscribe(()=>{
+        this.snackbar.open("Data has been deleted","Cancel",{
+          duration:2000,
+        })
         this.EmployeesListServices.getHttp().subscribe(employees=>{
         this.employees=employees;
         this.originalData=employees;

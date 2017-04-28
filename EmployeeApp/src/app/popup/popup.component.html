@@ -7,7 +7,7 @@
 
 <div class="filterForm" *ngIf="popupInput===2">
   <div class="closeButton" (click)="onClose()">x</div>
-  <p>Filter</p>
+   <div class="title"> Filter </div>
   <form 
   [formGroup]="form"
   (ngSubmit)="onSubmit(form.value)">
