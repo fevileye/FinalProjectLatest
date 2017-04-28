@@ -28,6 +28,7 @@ export class ListComponent implements OnInit {
   selectedId;
   highlightFilter=null;
   sortingStatus="normal";
+  dataStatus=null;
 
   ngOnInit() {
       this.EmployeesListServices.getHttp().subscribe(employees=>{
@@ -47,6 +48,7 @@ export class ListComponent implements OnInit {
         }else if(response.hasOwnProperty('option') && response.option=='loadSelectedId'){
           this.selectedId=response.value}
       });
+
   }
 
   sortingOperation(){
@@ -90,7 +92,16 @@ export class ListComponent implements OnInit {
 
   onChange(event)
   {
+    
     this.employees=this.originalData.filter(employee=>employee.lastName.toLowerCase().includes(event.target.value.toLowerCase()));
+  
+    if (this.employees.length===0){
+      this.dataStatus=1;
+    }
+    else
+    {
+      this.dataStatus=null;
+    }
   }
 
   onColorClicked(employeeId){
@@ -117,6 +128,7 @@ export class ListComponent implements OnInit {
     {
         this.highlightFilter=null;
         this.employees=this.originalData;
+        this.dataStatus=null;
         
     }else  if(filterAnswer.location!=""){
         this.employees=this.originalData.filter(employee=>employee.gender.toLowerCase().includes(filterAnswer.gender.toLowerCase()));
@@ -131,6 +143,12 @@ export class ListComponent implements OnInit {
        this.highlightFilter=1;
     }
 
+    
+      if (this.employees.value==null)
+      {
+        this.dataStatus=1;  
+      }
+    
     if (filterAnswer.location==""){
       this.snackbar.open("Filter based on "+filterAnswer.gender,"Cancel",{
           duration:2000,
