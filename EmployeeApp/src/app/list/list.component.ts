@@ -27,13 +27,15 @@ export class ListComponent implements OnInit {
   tempDeleteData;
   selectedId;
   highlightFilter=null;
-  sortingStatus="normal";
-  dataStatus=null;
+  sortingStatus="ascending";
+  tempFilterData;
 
   ngOnInit() {
       this.EmployeesListServices.getHttp().subscribe(employees=>{
       this.employees=employees;
-      this.originalData=employees});
+      this.originalData=employees;
+      this.tempFilterData=employees;
+  });
 
       this.SharedServices.notifyStream$.subscribe(response=>{
         if (response.hasOwnProperty('option') && response.option=='cancelClicked'){
@@ -42,7 +44,9 @@ export class ListComponent implements OnInit {
         }else if (response.hasOwnProperty('option')&& response.option=='submitClicked'){
           this.EmployeesListServices.getHttp().subscribe(employees=>{
           this.employees=employees;
-          this.originalData=employees});
+          this.originalData=employees
+          this.tempFilterData=employees;
+      });
           this.selectedId=null;
           this.buttonStatus=null;
         }else if(response.hasOwnProperty('option') && response.option=='loadSelectedId'){
@@ -53,7 +57,7 @@ export class ListComponent implements OnInit {
 
   sortingOperation(){
 
-    if (this.sortingStatus==="normal"){
+    if (this.sortingStatus==="ascending"){
           this.employees.sort(function(name1,name2){
           if (name1.lastName<name2.lastName){
             return -1;
@@ -63,12 +67,12 @@ export class ListComponent implements OnInit {
             return 0;
           }       
       });
-      this.sortingStatus="Ascending";
+      this.sortingStatus="descending";
       this.snackbar.open("Sorted in Ascending","Close",{
         duration:2000,
       });
     }
-    else if (this.sortingStatus==="Ascending"){
+    else if (this.sortingStatus==="descending"){
           this.employees.sort(function(name1,name2){
           if (name1.lastName>name2.lastName){
             return -1;
@@ -78,7 +82,7 @@ export class ListComponent implements OnInit {
             return 0;
           }       
       });
-      this.sortingStatus="normal";
+      this.sortingStatus="ascending";
       this.snackbar.open("Sorted in Descending","Close",{
         duration:2000,
       });
@@ -92,16 +96,10 @@ export class ListComponent implements OnInit {
 
   onChange(event)
   {
-    
-    this.employees=this.originalData.filter(employee=>employee.lastName.toLowerCase().includes(event.target.value.toLowerCase()));
-  
-    if (this.employees.length===0){
-      this.dataStatus=1;
-    }
-    else
-    {
-      this.dataStatus=null;
-    }
+    this.employees=this.tempFilterData.filter(employee=>{
+      let name=`${employee.firstName} ${employee.lastName}`;
+     return name.toLowerCase().includes(event.target.value.toLowerCase());
+    });
   }
 
   onColorClicked(employeeId){
@@ -128,7 +126,7 @@ export class ListComponent implements OnInit {
     {
         this.highlightFilter=null;
         this.employees=this.originalData;
-        this.dataStatus=null;
+        this.tempFilterData=this.employees;
         
     }else  if(filterAnswer.location!=""){
         this.employees=this.originalData.filter(employee=>employee.gender.toLowerCase().includes(filterAnswer.gender.toLowerCase()));
@@ -137,25 +135,19 @@ export class ListComponent implements OnInit {
           duration:2000,
         });
          this.highlightFilter=1;
+         this.tempFilterData=this.employees;
   }
     else{
-      this.employees=this.originalData.filter(employee=>employee.gender.toLowerCase().includes(filterAnswer.gender.toLowerCase()));
+       this.employees=this.originalData.filter(employee=>employee.gender.toLowerCase().includes(filterAnswer.gender.toLowerCase()));
        this.highlightFilter=1;
+       this.tempFilterData=this.employees;
     }
-
-    
-      if (this.employees.value==null)
-      {
-        this.dataStatus=1;  
-      }
     
     if (filterAnswer.location==""){
       this.snackbar.open("Filter based on "+filterAnswer.gender,"Cancel",{
           duration:2000,
         });
-        
     }
-    
   }
 
   onConfrimationNo(){

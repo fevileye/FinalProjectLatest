@@ -13,9 +13,11 @@
     <emp-popup *ngIf="popupStatus" [popupInput]=popupStatus (confirmationNo)="onConfrimationNo()" (confirmationYes)="onConfrimationYes()" (confirmationSubmit)="onConfirmationSubmit($event)"></emp-popup>
   </section>
   <section class="content">
-    <p *ngIf="dataStatus">There is no data</p>
+    <div *ngIf="employees?.length===0" class="dataStatus"> 
+        We couldn't find what you are looking for
+    </div>
     <emp-employee *ngFor="let employee of employees" [ngClass]="{'highlight':employee.empid==selectedId}" [employee]="employee" (deleteButton)="onClicked($event)" (colorStatus)="onColorClicked($event)"></emp-employee>
-    <i class="material-icons blue buttonAdd md-48" (click)="onAddClicked()">add_circle</i>
+     <button md-fab class="buttonAdd" (click)="onAddClicked()" color="primary"><i class="material-icons add">add</i></button>
   </section>
 <section>
     

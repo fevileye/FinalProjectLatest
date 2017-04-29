@@ -5,6 +5,11 @@
     margin:8px;
 }
 
+.material-icons.add{
+    margin:0px;
+    padding-top:17px;
+}
+
 .filterHighlight{
     color:red !important;
 }
@@ -28,6 +33,19 @@
     left:350px;
     bottom:50px;
     z-index: 6;
+}
+
+.dataStatus{
+    margin:10px;
+    font-family: tahoma;
+    text-align: center;
+    vertical-align: middle;
+    background-color:white;
+    height:100px;
+    line-height: 100px;
+    border-right: thin solid lightgrey;
+    border-bottom: thin solid lightgrey;
+    border-left: thin solid lightgrey; 
 }
 
 
