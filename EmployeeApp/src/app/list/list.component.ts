@@ -123,13 +123,14 @@ export class ListComponent implements OnInit {
 
   onConfirmationSubmit(filterAnswer){
     this.popupStatus=null;
-    if(filterAnswer.gender==='All')
+    if(filterAnswer.gender==='All' && filterAnswer.location==='All')
     {
         this.highlightFilter=null;
         this.employees=this.originalData;
         this.tempFilterData=this.employees;
         
-    }else if(filterAnswer.location!="" && filterAnswer.gender!=""){
+    }else if(filterAnswer.location!="All" && filterAnswer.gender!="All" ){
+      console.log("Masuk");
         this.employees=this.originalData.filter(employee=>employee.gender.toLowerCase()===filterAnswer.gender.toLowerCase());
         this.employees=this.employees.filter(employee=>employee.location.locName.toLowerCase()===filterAnswer.location.toLowerCase());
         this.snackbar.open("Filter based on "+filterAnswer.gender+" and location "+filterAnswer.location.locName,"Cancel",{
@@ -138,8 +139,16 @@ export class ListComponent implements OnInit {
          this.highlightFilter=1;
          this.tempFilterData=this.employees;
     }
-    else if (filterAnswer.location!="" && filterAnswer.gender==""){
+    else if (filterAnswer.location!="" && filterAnswer.gender=='All'){
       this.employees=this.originalData.filter(employee=>employee.location.locName.toLowerCase()===filterAnswer.location.toLowerCase());
+      this.highlightFilter=1;
+      this.tempFilterData=this.employees;
+      this.snackbar.open("Filter vased on "+filterAnswer.location.locName,"Cancel",{
+        duration:2000,
+      });
+    }
+    else if (filterAnswer.location==='All' && filterAnswer.gender!=""){
+      this.employees=this.originalData.filter(employee=>employee.gender.toLowerCase()===filterAnswer.gender.toLowerCase());
       this.highlightFilter=1;
       this.tempFilterData=this.employees;
       this.snackbar.open("Filter vased on "+filterAnswer.location.locName,"Cancel",{

@@ -14,7 +14,7 @@
   <section class="input">
 
      <div class="genderSelect">
-     <md-select placeholder="Gender" name="gender" formControlName="gender" [(ngModel)]="Male">
+     <md-select placeholder="Gender" name="gender" formControlName="gender" [(ngModel)]="genderInitial">
      <md-option  *ngFor="let gender of lookupLists.gendersFilter" [value]="gender.value" >
       {{gender.viewValue}}
       </md-option>
@@ -22,8 +22,9 @@
       </div>
       
      <div class="locationSelect"> 
-     <md-select placeholder="Location" name="location" formControlName="location">
-     <md-option *ngFor="let location of locations" [value]="location.locName" >
+     <md-select placeholder="Location" name="location" formControlName="location" [(ngModel)]="locationInitial">
+      <md-option value="All">All</md-option>
+      <md-option *ngFor="let location of locations" [value]="location.locName" >
       {{location.locName}}
       </md-option>
       </md-select>

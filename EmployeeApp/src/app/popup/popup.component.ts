@@ -27,6 +27,8 @@ export class PopupComponent implements OnInit {
   form;
   locations;
   locationStatus=null;
+  genderInitial="All";
+  locationInitial="All";
 
   ngOnInit() {
     this.form = this.formBuilder.group({

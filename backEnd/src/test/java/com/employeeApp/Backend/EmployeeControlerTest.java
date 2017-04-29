@@ -29,10 +29,10 @@ public class EmployeeControlerTest {
 	
 	@Test
 	public void testCreateEmployee() throws Exception{
-		Employee first=new Employee("Nixon","Cahyadi","Male",new Date(),"Single","085252363636","Java BootCamp","Contract","-",new Date(),"SE-PG","CDC- AsterX","nixon.christian@gmail.com","Bandung","Indonesian","people1.jpg");
-		Employee second=new Employee("Steven","Cahyadi","Male",new Date(),"Single","085252363636","Java BootCamp","Contract","-",new Date(),"SE-PG","CDC- AsterX","nixon.christian@gmail.com","Bandung","Indonesian","people1.jpg");
+		//Employee first=new Employee("Nixon","Cahyadi","Male",new Date(),"Single","085252363636","Java BootCamp","Contract","-",new Date(),"SE-PG","CDC- AsterX","nixon.christian@gmail.com","Bandung","Indonesian","people1.jpg");
+		//Employee second=new Employee("Steven","Cahyadi","Male",new Date(),"Single","085252363636","Java BootCamp","Contract","-",new Date(),"SE-PG","CDC- AsterX","nixon.christian@gmail.com","Bandung","Indonesian","people1.jpg");
 		
-		when(EmpRepo.findAll()).thenReturn(Arrays.asList(first,second));
+	//	when(EmpRepo.findAll()).thenReturn(Arrays.asList(first,second));
 		
 		mockMvc.perform(get("/employee"))
 			.andExpect(status().isOk());
