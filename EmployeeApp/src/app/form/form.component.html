@@ -73,7 +73,7 @@
 
       <li>
      <md-select placeholder="Location" name="Location" formControlName="location">
-     <md-option *ngFor="let location of locationList" [value]="location.locName">
+     <md-option *ngFor="let location of locationList" [value]="location.locId">
       {{location.locName}}
       </md-option>
       </md-select>

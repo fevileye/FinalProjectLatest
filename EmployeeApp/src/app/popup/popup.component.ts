@@ -26,11 +26,11 @@ export class PopupComponent implements OnInit {
 
   form;
   locations;
+  locationStatus=null;
 
   ngOnInit() {
     this.form = this.formBuilder.group({
       gender: this.formBuilder.control('', Validators.compose([
-        Validators.required
       ])),
       location: this.formBuilder.control(''),
     });
@@ -39,7 +39,9 @@ export class PopupComponent implements OnInit {
 
   }
 
+
   onSubmit(filterAnswer){
+    
     this.confirmationSubmit.emit(filterAnswer);
   }
 

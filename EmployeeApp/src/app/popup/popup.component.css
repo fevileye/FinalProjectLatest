@@ -43,6 +43,11 @@
 .input{
   margin:10px;
   padding:10px;
+  overflow: hidden;
+}
+
+.genderSelect{
+  float:left;
 }
 
 md-select{

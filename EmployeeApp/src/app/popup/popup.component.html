@@ -13,17 +13,21 @@
   (ngSubmit)="onSubmit(form.value)">
   <section class="input">
 
-     <md-select placeholder="Gender" name="gender" formControlName="gender">
-     <md-option *ngFor="let gender of lookupLists.gendersFilter" [value]="gender.value" >
+     <div class="genderSelect">
+     <md-select placeholder="Gender" name="gender" formControlName="gender" [(ngModel)]="Male">
+     <md-option  *ngFor="let gender of lookupLists.gendersFilter" [value]="gender.value" >
       {{gender.viewValue}}
       </md-option>
       </md-select>
+      </div>
       
+     <div class="locationSelect"> 
      <md-select placeholder="Location" name="location" formControlName="location">
      <md-option *ngFor="let location of locations" [value]="location.locName" >
       {{location.locName}}
       </md-option>
       </md-select>
+      </div>
 
   </section>
 	  

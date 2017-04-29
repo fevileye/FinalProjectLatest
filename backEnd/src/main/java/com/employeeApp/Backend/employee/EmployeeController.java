@@ -21,12 +21,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.employeeApp.Backend.location.Location;
+import com.employeeApp.Backend.location.LocationRepository;
+
 @RestController
 public class EmployeeController {
 	SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-mm-dd");
 	
 	@Autowired 
 	private EmployeeRepository EmpRepo;
+	
+	@Autowired
+	private LocationRepository LocRepo;
 	
 	@CrossOrigin(origins="http://localhost:4200")
 	@GetMapping ("/employee")
@@ -62,6 +68,8 @@ public class EmployeeController {
 		String fileName=null;
 		String extention=null;
 		
+		Location parsedLocation=LocRepo.findOne(Long.parseLong(location));
+		
 		if (photo!=null){
 			if (photo.getOriginalFilename().contains(".jpg"))
 			{
@@ -87,7 +95,9 @@ public class EmployeeController {
 			else{
 				fileName=tempEmployee.getImage();
 			}
-			newEmployee= new Employee(Long.parseLong(empid),firstName,lastName,gender,dob,martialStatus,phone,subDivision,status,suspendDate,hod,grade,division,email,location,nationality,fileName);
+			
+			
+			newEmployee= new Employee(Long.parseLong(empid),firstName,lastName,gender,dob,martialStatus,phone,subDivision,status,suspendDate,hod,grade,division,email,parsedLocation,nationality,fileName);
 		}else {
 			if (photo!=null){
 				fileName=UUID.randomUUID().toString().concat(extention);
@@ -96,7 +106,7 @@ public class EmployeeController {
 				fileName="profilePicture.png";
 			}
 			
-		 newEmployee= new Employee(firstName,lastName,gender,dob,martialStatus,phone,subDivision,status,suspendDate,hod,grade,division,email,location,nationality,fileName);	
+		 newEmployee= new Employee(firstName,lastName,gender,dob,martialStatus,phone,subDivision,status,suspendDate,hod,grade,division,email,parsedLocation,nationality,fileName);	
 		}
 		
 		

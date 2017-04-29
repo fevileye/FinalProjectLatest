@@ -7,7 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.employeeApp.Backend.location.Location;
 
 @Entity
 @Table(name="t_employee")
@@ -43,8 +47,9 @@ public class Employee {
 	private String division;
 	@Column (name="email",nullable=false)
 	private String email;
-	@Column (name="location",nullable=false)
-	private String location;
+	@ManyToOne
+	@JoinColumn(name="locId")
+	private Location location;
 	@Column (name="nationality",nullable=false)
 	private String nationality;
 	@Column (name="image",nullable=false)
@@ -52,7 +57,7 @@ public class Employee {
 	
 	public Employee(){}
 	
-	public Employee (String firstName, String lastName, String gender, Date dateOfBirth,String martial_status, String phone, String subDivision,String status, String suspendDate, Date hiredDate, String grade, String division,String email,String location,String nationality,String image){
+	public Employee (String firstName, String lastName, String gender, Date dateOfBirth,String martial_status, String phone, String subDivision,String status, String suspendDate, Date hiredDate, String grade, String division,String email,Location location,String nationality,String image){
 		this.firstName=firstName;
 		this.lastName=lastName;
 		this.gender=gender;
@@ -71,7 +76,7 @@ public class Employee {
 		this.image=image;
 	}
 	
-	public Employee (long empid,String firstName, String lastName, String gender, Date dateOfBirth,String martial_status, String phone, String subDivision,String status, String suspendDate, Date hiredDate, String grade, String division,String email,String location,String nationality,String image){
+	public Employee (long empid,String firstName, String lastName, String gender, Date dateOfBirth,String martial_status, String phone, String subDivision,String status, String suspendDate, Date hiredDate, String grade, String division,String email,Location location,String nationality,String image){
 		this.empid=empid;
 		this.firstName=firstName;
 		this.lastName=lastName;
@@ -175,12 +180,6 @@ public class Employee {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getLocation() {
-		return location;
-	}
-	public void setLocation(String location) {
-		this.location = location;
-	}
 	public String getNationality() {
 		return nationality;
 	}
@@ -192,6 +191,12 @@ public class Employee {
 	}
 	public void setImage(String image) {
 		this.image = image;
+	}
+	public Location getLocation() {
+		return location;
+	}
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 
 	

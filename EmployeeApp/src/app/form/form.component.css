@@ -6,13 +6,12 @@
 }
 
 .input{
-    height:505px;
+    height: calc(100vh - 230px);
     overflow: auto;   
 }
 
 .leftInput{
-    float:left;
-    
+    float:left; 
 }
 
 .rightInput{

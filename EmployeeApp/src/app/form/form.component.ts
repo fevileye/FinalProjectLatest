@@ -50,6 +50,7 @@ export class FormComponent implements OnInit {
           this.employee=employee;
           this.formStatus=1;
           this.onFillValue();
+          this.file=null;
         });   
       }
     });
@@ -137,7 +138,7 @@ export class FormComponent implements OnInit {
     this.form.controls['grade'].setValue(this.employee.grade);
     this.form.controls['division'].setValue(this.employee.division);
     this.form.controls['email'].setValue(this.employee.email);
-    this.form.controls['location'].setValue(this.employee.location);
+    this.form.controls['location'].setValue(this.employee.location.locId);
     this.form.controls['status'].setValue(this.employee.status);
     this.imageSource="src/Sources/"+this.employee.image;
   }
