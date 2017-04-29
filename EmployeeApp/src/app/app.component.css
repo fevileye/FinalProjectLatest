@@ -61,3 +61,36 @@
     float:left;
     width:69%;
 }
+
+@media(max-width:768px){
+    md-toolbar{
+        height:280px;
+        margin: 0;
+    }
+
+    .profilePicture{
+        width:100px;
+        height:100px;
+        overflow:hidden;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    #loggedIn_Picture{
+        height:100px;
+        width:100px;
+        
+    }
+
+    .loggedIn_Details{
+        width:100%;
+        text-align: center;
+        padding:0;
+        margin:0;
+    }   
+
+    /deep/ .mat-toolbar-row{
+        display:block !important;
+    }
+    
+}

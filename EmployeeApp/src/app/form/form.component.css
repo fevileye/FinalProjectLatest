@@ -61,3 +61,14 @@ md-input-container{
     float:right;
     margin-right:5px;
 }
+
+@media(max-width:768px)
+{
+    .rightInput{
+        height:529px;
+    }
+    .upload img{
+        margin-left:150px;
+    }
+    
+}

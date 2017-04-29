@@ -48,5 +48,15 @@
     border-left: thin solid lightgrey; 
 }
 
+@media(max-width:768px)
+{
+    /deep/ .mat-input-container{
+        width:150px;
+    }
+    
+    .buttonAdd{
+        left:200px;
+    }
+}
 
 

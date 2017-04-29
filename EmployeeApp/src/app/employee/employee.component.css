@@ -47,5 +47,13 @@
     font-size:13px;
 }
 
+@media(max-width:768px)
+{
+    .profilePicture{
+        margin-left:40px;
+    }
+    
+}
+
 
 
