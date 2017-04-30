@@ -60,9 +60,9 @@ export class ListComponent implements OnInit {
 
     if (this.sortingStatus==="ascending"){
           this.employees.sort(function(name1,name2){
-          if (name1.lastName<name2.lastName){
+          if (name1.lastName.toLowerCase()<name2.lastName.toLowerCase()){
             return -1;
-          } else if (name1.lastName > name2.lastName){
+          } else if (name1.lastName.toLowerCase() > name2.lastName.toLowerCase()){
             return 1;
           } else {
             return 0;
@@ -75,9 +75,9 @@ export class ListComponent implements OnInit {
     }
     else if (this.sortingStatus==="descending"){
           this.employees.sort(function(name1,name2){
-          if (name1.lastName>name2.lastName){
+          if (name1.lastName.toLowerCase()>name2.lastName.toLowerCase()){
             return -1;
-          } else if (name1.lastName < name2.lastName){
+          } else if (name1.lastName.toLowerCase() < name2.lastName.toLowerCase()){
             return 1;
           } else {
             return 0;
@@ -130,10 +130,9 @@ export class ListComponent implements OnInit {
         this.tempFilterData=this.employees;
         
     }else if(filterAnswer.location!="All" && filterAnswer.gender!="All" ){
-      console.log("Masuk");
-        this.employees=this.originalData.filter(employee=>employee.gender.toLowerCase()===filterAnswer.gender.toLowerCase());
+      this.employees=this.originalData.filter(employee=>employee.gender.toLowerCase()===filterAnswer.gender.toLowerCase());
         this.employees=this.employees.filter(employee=>employee.location.locName.toLowerCase()===filterAnswer.location.toLowerCase());
-        this.snackbar.open("Filter based on "+filterAnswer.gender+" and location "+filterAnswer.location.locName,"Cancel",{
+        this.snackbar.open("Filter based on "+filterAnswer.gender+" and location "+filterAnswer.location,"Cancel",{
           duration:2000,
         });
          this.highlightFilter=1;
@@ -143,7 +142,7 @@ export class ListComponent implements OnInit {
       this.employees=this.originalData.filter(employee=>employee.location.locName.toLowerCase()===filterAnswer.location.toLowerCase());
       this.highlightFilter=1;
       this.tempFilterData=this.employees;
-      this.snackbar.open("Filter vased on "+filterAnswer.location.locName,"Cancel",{
+      this.snackbar.open("Filter vased on "+filterAnswer.location,"Cancel",{
         duration:2000,
       });
     }
@@ -151,7 +150,7 @@ export class ListComponent implements OnInit {
       this.employees=this.originalData.filter(employee=>employee.gender.toLowerCase()===filterAnswer.gender.toLowerCase());
       this.highlightFilter=1;
       this.tempFilterData=this.employees;
-      this.snackbar.open("Filter vased on "+filterAnswer.location.locName,"Cancel",{
+      this.snackbar.open("Filter vased on "+filterAnswer.location,"Cancel",{
         duration:2000,
       });
     }
