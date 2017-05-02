@@ -6,7 +6,7 @@
           <input mdInput placeholder="Search" color ="primary" (keyup)="onChange($event)">
         </md-input-container>
        <i *ngIf="buttonStatus" class="material-icons blue" (click)="onDeleteClicked()">delete</i>
-       <i class="material-icons blue" (click)="sortingOperation()">sort</i>
+       <i class="material-icons blue" (click)="sortingOperation()">sort_by_alpha</i>
        <i class="material-icons blue" [ngClass]="{'filterHighlight':highlightFilter!=null}" (click)="filterClicked()">filter_list</i>
        <md-chip>  {{employees==null ? 0:employees.length}} </md-chip>
     </md-chip-list>

@@ -163,14 +163,18 @@ export class FormComponent implements OnInit {
 
   fileEvent(source){
 
+  if (source.target.files[0])
+  {
     this.file = source.target.files;
     var reader = new FileReader();
 
-    reader.onload = (event: any) => {
-      this.imageSource = event.target.result;
-    }
-    reader.readAsDataURL(source.target.files[0]);
-  
+    
+      reader.onload = (event: any) => {
+        this.imageSource = event.target.result;
+      }
+      reader.readAsDataURL(source.target.files[0]);
+    
+  }
   }
 
 }
