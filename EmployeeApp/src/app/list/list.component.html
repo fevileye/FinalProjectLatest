@@ -5,9 +5,9 @@
         <md-input-container  >
           <input mdInput placeholder="Search" color ="primary" (keyup)="onChange($event)">
         </md-input-container>
-       <i *ngIf="buttonStatus" class="material-icons blue" (click)="onDeleteClicked()">delete</i>
-       <i class="material-icons blue" (click)="sortingOperation()">sort_by_alpha</i>
-       <i class="material-icons blue" [ngClass]="{'filterHighlight':highlightFilter!=null}" (click)="filterClicked()">filter_list</i>
+       <i *ngIf="buttonStatus" class="material-icons blue" (click)="onDeleteClicked()" mdTooltip="Delete Button">delete</i>
+       <i class="material-icons blue" (click)="sortingOperation()" mdTooltip="Sorting Button">sort_by_alpha</i>
+       <i class="material-icons blue" [ngClass]="{'filterHighlight':highlightFilter!=null}" (click)="filterClicked()" mdTooltip="Filter Button">filter_list</i>
        <md-chip>  {{employees==null ? 0:employees.length}} </md-chip>
     </md-chip-list>
     <emp-popup *ngIf="popupStatus" [popupInput]=popupStatus (confirmationNo)="onConfrimationNo()" (confirmationYes)="onConfrimationYes()" (confirmationSubmit)="onConfirmationSubmit($event)"></emp-popup>

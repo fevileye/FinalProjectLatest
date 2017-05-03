@@ -3,6 +3,7 @@
 
 .material-icons{
     margin:8px;
+    cursor: pointer;
 }
 
 .material-icons.add{

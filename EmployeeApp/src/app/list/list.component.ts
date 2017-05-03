@@ -29,13 +29,14 @@ export class ListComponent implements OnInit {
   highlightFilter=null;
   sortingStatus="ascending";
   tempFilterData;
+  currentSearch=null;
 
   ngOnInit() {
       this.EmployeesListServices.getHttp().subscribe(employees=>{
       this.employees=employees;
       this.originalData=employees;
       this.tempFilterData=employees;
-  });
+     });
 
       this.SharedServices.notifyStream$.subscribe(response=>{
         if (response.hasOwnProperty('option') && response.option=='cancelClicked'){
@@ -97,6 +98,7 @@ export class ListComponent implements OnInit {
 
   onChange(event)
   {
+    this.currentSearch=event.target.value;
     this.employees=this.tempFilterData.filter(employee=>{
       let name=`${employee.firstName} ${employee.lastName}`;
      return name.toLowerCase().includes(event.target.value.toLowerCase());
@@ -130,7 +132,7 @@ export class ListComponent implements OnInit {
         this.tempFilterData=this.employees;
         
     }else if(filterAnswer.location!="All" && filterAnswer.gender!="All" ){
-      this.employees=this.originalData.filter(employee=>employee.gender.toLowerCase()===filterAnswer.gender.toLowerCase());
+        this.employees=this.originalData.filter(employee=>employee.gender.toLowerCase()===filterAnswer.gender.toLowerCase());
         this.employees=this.employees.filter(employee=>employee.location.locName.toLowerCase()===filterAnswer.location.toLowerCase());
         this.snackbar.open("Filter based on "+filterAnswer.gender+" and location "+filterAnswer.location,"Cancel",{
           duration:2000,
@@ -142,7 +144,7 @@ export class ListComponent implements OnInit {
       this.employees=this.originalData.filter(employee=>employee.location.locName.toLowerCase()===filterAnswer.location.toLowerCase());
       this.highlightFilter=1;
       this.tempFilterData=this.employees;
-      this.snackbar.open("Filter vased on "+filterAnswer.location,"Cancel",{
+      this.snackbar.open("Filter based on "+filterAnswer.location,"Cancel",{
         duration:2000,
       });
     }
@@ -150,7 +152,7 @@ export class ListComponent implements OnInit {
       this.employees=this.originalData.filter(employee=>employee.gender.toLowerCase()===filterAnswer.gender.toLowerCase());
       this.highlightFilter=1;
       this.tempFilterData=this.employees;
-      this.snackbar.open("Filter vased on "+filterAnswer.location,"Cancel",{
+      this.snackbar.open("Filter based on "+filterAnswer.location,"Cancel",{
         duration:2000,
       });
     }
@@ -166,6 +168,14 @@ export class ListComponent implements OnInit {
         });
     }
 
+   
+    if (this.currentSearch!=null)
+    {
+      this.employees=this.tempFilterData.filter(employee=>{
+          let name=`${employee.firstName} ${employee.lastName}`;
+        return name.toLowerCase().includes(this.currentSearch.toLowerCase());
+        });
+      }
   }
 
   onConfrimationNo(){
