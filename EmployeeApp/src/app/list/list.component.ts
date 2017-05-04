@@ -184,6 +184,7 @@ export class ListComponent implements OnInit {
 
   onConfrimationYes(){
     this.popupStatus=null;
+    this.highlightFilter=null;
     this.EmployeesListServices.delete(this.tempDeleteData.empid)
       .subscribe(()=>{
         this.snackbar.open("Data has been deleted","Cancel",{
