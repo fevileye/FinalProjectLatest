@@ -193,6 +193,7 @@ export class ListComponent implements OnInit {
         this.EmployeesListServices.getHttp().subscribe(employees=>{
         this.employees=employees;
         this.originalData=employees;
+        this.tempFilterData=this.employees;
         this.buttonStatus=null;
       });
     });
